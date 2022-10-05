@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Message from "./components/Message";
 import PictureDisplay from "./components/PictureDisplay";
 
@@ -11,6 +11,26 @@ function App() {
   const [isBrown, setIsBrown] = useState(false);
   const [isLightBrown, setIsLightBrown] = useState(false);
   const [isYellow, setIsYellow] = useState(false);
+
+  useEffect(() => {
+    // console.log('Color change :: isRed?: ', isRed)
+    // console.log('Color change :: isOrange?: ', isOrange)
+    // console.log('Color change :: isBrown?: ', isBrown)
+    // console.log('Color change :: isLightBrown?: ', isLightBrown)
+    // console.log('Color change :: isYellow?: ', isYellow)
+
+    const colors = [];
+    if (isRed) colors.push('red')
+    if (isOrange) colors.push('orange')
+    if (isBrown) colors.push('brown')
+    if (isLightBrown) colors.push('light-brown')
+    if (isYellow) colors.push('yellow')
+    setFeatherColors(colors);
+
+
+  }, [isRed, isOrange, isBrown, isLightBrown, isYellow])
+
+
 
   return (
     <>
@@ -62,6 +82,7 @@ function App() {
       {/* Generated display based on user selections above */}
       <h3 className="button-controls">Enjoy your turkey</h3>
       <PictureDisplay
+
         size={size}
         featherCount={featherCount}
         featherColors={featherColors}
